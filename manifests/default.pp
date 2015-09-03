@@ -28,7 +28,7 @@ class { '::apache::mod::rewrite': }
 # PHP
 class { 'php::cli': inifile => '/etc/php5/apache2/php.ini', }
 class { 'php::mod_php5': inifile => '/etc/php5/apache2/php.ini', php_package_name => 'libapache2-mod-php5'}
-php::module { [ 'mcrypt' ]: }
+php::module { [ 'mcrypt', 'mysql' ]: }
 
 php::ini { '/etc/php5/apache2/php.ini':
   display_errors => 'On',
@@ -51,7 +51,6 @@ exec { "restartapache":
   require => [Exec['enablephp5'], Class['apache']],
 }
 
-
 # Install MySQL
 # Root password should be blank. This is OK since it's a development machine
 class { '::mysql::server':
@@ -65,4 +64,11 @@ mysql::db { 'progress':
   password => 'secret',
   host     => 'localhost',
   grant    => 'ALL',
+}
+
+# Set MOTD
+file { "/etc/update-motd.d/99-progress":
+  ensure => 'present',
+  source => '/vagrant/manifests/motd/99-progress',
+  mode => '751',
 }

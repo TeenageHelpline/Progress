@@ -1,0 +1,3 @@
+#!/bin/sh
+
+printf "To install Progress HR solution, change to the /var/www/progress directory,\ncopy .env.example to .env,\nrun 'composer install'\nand then 'php artisan migrate --seed'.\n\n"
