@@ -2,9 +2,12 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
 use App\Http\Models\User;
 use App\Http\Models\Role;
+use App\Http\Models\JobPosition;
+use App\Http\Models\Person;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +22,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call('RoleTableSeeder');
         $this->call('DummyUserSeeder');
+		$this->call('JobPositionsTableSeeder');
+		$this->call('PeopleTableSeeder');
 
         Model::reguard();
     }
@@ -28,10 +33,55 @@ class RoleTableSeeder extends Seeder {
 
 	public function run()
 	{
-		Role::create(['name' => 'login', 'description' => 'The login priviledge. Regular user.']);
-		Role::create(['name' => 'admin', 'description' => 'Admins.']);
+		Role::create(['name' => 'user', 'description' => 'Regular user']);
+		Role::create(['name' => 'admin', 'description' => 'Administrator']);
 	}
 
+}
+
+class JobPositionsTableSeeder extends Seeder {
+
+	public function run() {
+		JobPosition::create(['name' => 'Employee']);
+		JobPosition::create(['name' => 'Boss']);
+	}
+}
+
+class PeopleTableSeeder extends Seeder {
+
+	public function run() {
+		$john = Person::create([
+			'first_name' => 'John',
+			'last_name' => 'Smith',
+			'dob' => '336787200',
+			'gender' => 'm',
+			'email' => 'john@smith.local',
+			'address1' => '10 Main Street',
+			'city' => 'London',
+			'zip' => 'NW1 1AB',
+			'country' => 'United Kingdom',
+		]);
+
+		if($john) {
+			$john->giveJobPosition("Employee");
+		}
+
+		$jane = Person::create([
+			'first_name' => 'Jane',
+			'last_name' => 'Smith',
+			'dob' => '337564800',
+			'gender' => 'f',
+			'email' => 'jane@smith.local',
+			'address1' => '12 Main Street',
+			'city' => 'London',
+			'zip' => 'NW1 1AC',
+			'country' => 'United Kingdom',
+		]);
+
+		if($jane) {
+			$jane->giveJobPosition("Boss");
+		}
+	}
 }
 
 class DummyUserSeeder extends Seeder {
@@ -39,20 +89,17 @@ class DummyUserSeeder extends Seeder {
 	public function run()
 	{
 		$user = User::create([
-			'firstname' => 'Dummy',
-			'lastname' => 'User',
-			'email' => 'user@example.com',
-			'address1' => 'Address line 1',
-			'address2' => 'Address line 2',
-			'zip' => 1234,
-			'city' => 'Cityname',
-			'dob' => time()
+			'name' => 'Progress Administrator',
+			'email' => 'administrator@progress.local',
+			'password' => Hash::make('password'),
 		]);
+
 		if($user)
 		{
-			$user->assignRole('login');
+			$user->assignRole('user');
 		}
-		$this->command->info('Dummy user created');
+
+		$this->command->info('Administration user created. Username: administrator@progress.local, password: password.');
 	}
 
 }
