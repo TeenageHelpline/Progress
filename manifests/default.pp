@@ -72,3 +72,14 @@ file { "/etc/update-motd.d/99-progress":
   source => '/vagrant/manifests/motd/99-progress',
   mode => '751',
 }
+
+# Install Node
+package { "node":
+  ensure => 'installed',
+}
+
+# Install NPM
+package { "npm":
+  ensure => 'installed',
+  require => Package['node'],
+}
