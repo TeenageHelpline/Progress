@@ -74,7 +74,7 @@ file { "/etc/update-motd.d/99-progress":
 }
 
 # Install Node
-package { "node":
+package { "nodejs-legacy":
   ensure => 'installed',
 }
 
@@ -82,4 +82,11 @@ package { "node":
 package { "npm":
   ensure => 'installed',
   require => Package['node'],
+}
+
+# Install Bower
+exec { "bowerinstall":
+  path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ],
+  command => "npm install -g bower",
+  require => [Package['npm']],
 }
