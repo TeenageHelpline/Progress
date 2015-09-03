@@ -81,12 +81,17 @@ package { "nodejs-legacy":
 # Install NPM
 package { "npm":
   ensure => 'installed',
-  require => Package['node'],
+  require => Package['nodejs-legacy'],
+}
+
+# Install Git
+package { "git":
+  ensure => 'installed',
 }
 
 # Install Bower
 exec { "bowerinstall":
   path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ],
   command => "npm install -g bower",
-  require => [Package['npm']],
+  require => [Package['npm'], Package['git']],
 }
