@@ -3,16 +3,15 @@ package { "curl":
   ensure => installed,
 }
 
-# Install Composer
-exec { 'install composer':
-  command => '/usr/bin/curl -sS https://getcomposer.org/installer | php && sudo mv composer.phar /usr/local/bin/composer',
-  require => Package['curl'],
-}
-
 # Apache configuration
 class { 'apache':
   mpm_module => "prefork",
   default_vhost => false,
+}
+
+file {'/etc/php5/apache2/':
+  ensure => 'directory',
+  before => Class['php::cli']
 }
 
 # Apache VHost
@@ -27,13 +26,43 @@ apache::vhost { 'progress.local':
 class { '::apache::mod::rewrite': }
 
 # PHP
-class { '::apache::mod::php': }
+class { 'php::cli': inifile => '/etc/php5/apache2/php.ini', }
+class { 'php::mod_php5': inifile => '/etc/php5/apache2/php.ini', php_package_name => 'libapache2-mod-php5'}
+php::module { [ 'mcrypt' ]: }
 
-# Set PHP configuration
-file { '/etc/php5/apache2/php.ini':
-  ensure => "link",
-  target => "/vagrant/manifests/php/php.ini",
-  replace => true,
-  force => true,
-  require => Class['::apache::mod::php'],
+php::ini { '/etc/php5/apache2/php.ini':
+  display_errors => 'On',
+  memory_limit   => '256M',
+  notify => Service["apache2"],
+}
+
+# Manually enable mod_php as it doesn't seem to work otherwise
+exec { "enablephp5":
+  path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ],
+  command => "a2enmod php5",
+  notify => Service["apache2"],
+  require => [Class['php::mod_php5'], Class['apache']],
+}
+
+# Restart Apache
+exec { "restartapache":
+  path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ],
+  command => "service apache2 restart",
+  require => [Exec['enablephp5'], Class['apache']],
+}
+
+
+# Install MySQL
+# Root password should be blank. This is OK since it's a development machine
+class { '::mysql::server':
+  root_password           => '',
+  remove_default_accounts => true,
+}
+
+# Setup a Progress database
+mysql::db { 'progress':
+  user     => 'progress',
+  password => 'secret',
+  host     => 'localhost',
+  grant    => 'ALL',
 }

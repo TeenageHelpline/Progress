@@ -42,6 +42,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
 
+  # Add additional parameters to set owner of shared folder so permissions
+  # are correct.
   config.vm.synced_folder "./", "/var/www/progress", id: "vagrant-root",
     owner: "vagrant",
     group: "www-data",
