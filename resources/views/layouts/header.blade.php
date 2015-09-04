@@ -8,18 +8,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Project name</a>
+                <a class="navbar-brand" id="progress-brand" href="/"><i class="fa fa-spinner"></i> <i>Progress</i> <span style="font-size: small;">HR</span></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Dashboard</a></li>
                     <li><a href="#">Settings</a></li>
-                    <li><a href="#">Profile</a></li>
                     <li><a href="#">Help</a></li>
+                    <li><a href="https://www.github.com/teenagehelpline/progress"><i class="fa fa-fw fa-github"></i></a></li>
                 </ul>
-                <form class="navbar-form navbar-right">
-                    <input type="text" class="form-control" placeholder="Search...">
-                </form>
             </div>
         </div>
     </nav>
