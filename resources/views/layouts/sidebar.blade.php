@@ -9,6 +9,7 @@
         <ul class="nav nav-sidebar">
             <li><a href="">People</a></li>
             <li><a href="">Add New Person</a></li>
+            <li><a href="">Time Tracker</a></li>
         </ul>
         <ul class="nav nav-sidebar">
             <li><a href="">Job Positions</a></li>
