@@ -1,3 +1,5 @@
+@include('layouts.header')
+
 <!doctype html>
 <html>
 <head>
@@ -10,7 +12,7 @@
     <script src="{{ asset('/js/app.js') }}"></script>
 </head>
 <body>
-
+@yield('header')
 <div id="content-container">
     @yield('content')
 </div>

@@ -11,19 +11,27 @@ var elixir = require('laravel-elixir');
  |
  */
 
+var bower_path = "./vendor/bower_components";
 var paths = {
- 'jquery': './vendor/bower_components/jquery/',
- 'bootstrap': './vendor/bower_components/bootstrap-sass/assets/'
-}
+    'jquery'     : bower_path + "/jquery/dist",
+    'bootstrap'  : bower_path + "/bootstrap-sass/assets",
+    'fontawesome': bower_path + "/font-awesome"
+};
 
 elixir(function(mix) {
-    mix.sass('app.scss', 'public/css/', {
+
+    mix.sass("app.scss", "public/assets/css", {
         includePaths: [
-            paths.bootstrap + 'stylesheets/']
-        })
-        .copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/fonts')
-        .scripts([
-         paths.jquery + "dist/jquery.js",
-         paths.bootstrap + "javascripts/bootstrap.js"
-        ], 'public/js/app.js', './vendor/bower_components/');
+            paths.bootstrap + '/stylesheets',
+            paths.fontawesome + '/scss'
+        ]
+    })
+    .copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/assets/fonts')
+    .scripts([
+     paths.jquery + "/jquery.js",
+     paths.bootstrap + "/javascripts/bootstrap.js"
+    ], 'public/assets/js/app.js', './vendor/bower_components/');
+
+    mix.copy(paths.fontawesome + '/fonts', 'public/assets/fonts');
+
 });
