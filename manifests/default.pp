@@ -91,7 +91,44 @@ package { "git":
 
 # Install Bower
 exec { "bowerinstall":
-  path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ],
+  path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ],
   command => "npm install -g bower",
   require => [Package['npm'], Package['git']],
+}
+
+# Install Gulp
+exec { "gulpinstall":
+  path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ],
+  command => "npm install -g gulp",
+  require => [Package['npm'], Package['git']],
+}
+
+
+# Install Bower
+exec { "bowercomponentsinstall":
+  path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ],
+  command => "bower install --allow-root",
+  require => [Exec['bowerinstall']],
+  cwd => "/var/www/progress",
+}
+
+# Install required NPM modules
+exec { "modulesinstall":
+  path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ],
+  command => "npm install",
+  require => [Exec["bowercomponentsinstall"]],
+  cwd => "/var/www/progress",
+}
+
+# Install notify-send
+package { "libnotify-bin":
+  ensure => 'installed',
+}
+
+# Run gulp to update public CSS / JS
+exec { "gulp":
+  path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ],
+  command => "gulp",
+  require => [Exec["bowercomponentsinstall"], Package['libnotify-bin'], Exec['modulesinstall']],
+  cwd => "/var/www/progress",
 }
