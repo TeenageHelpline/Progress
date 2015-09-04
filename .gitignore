@@ -4,3 +4,6 @@ Homestead.yaml
 Homestead.json
 .env
 composer.lock
+npm-debug.log
+.idea/
+.vagrant/

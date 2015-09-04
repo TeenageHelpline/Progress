@@ -72,3 +72,26 @@ file { "/etc/update-motd.d/99-progress":
   source => '/vagrant/manifests/motd/99-progress',
   mode => '751',
 }
+
+# Install Node
+package { "nodejs-legacy":
+  ensure => 'installed',
+}
+
+# Install NPM
+package { "npm":
+  ensure => 'installed',
+  require => Package['nodejs-legacy'],
+}
+
+# Install Git
+package { "git":
+  ensure => 'installed',
+}
+
+# Install Bower
+exec { "bowerinstall":
+  path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ],
+  command => "npm install -g bower",
+  require => [Package['npm'], Package['git']],
+}
