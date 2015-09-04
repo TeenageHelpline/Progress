@@ -3,6 +3,12 @@ package { "curl":
   ensure => installed,
 }
 
+# Run apt-get update in case packages can't be found
+exec { "aptgetupdate":
+  path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ],
+  command => "apt-get update",
+  before => [Class['apache'], Class['::mysql::server'], Package['nodejs-legacy'], Package['git']],
+}
 # Apache configuration
 class { 'apache':
   mpm_module => "prefork",
