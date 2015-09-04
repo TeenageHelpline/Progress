@@ -19,6 +19,7 @@
                     @if(Auth::check())
                         <li><a href="#"><i class="fa fa-fw fa-cogs"></i></a></li>
                     @endif
+
                     <li><a href="#"><i class="fa fa-fw fa-question-circle"></i></a></li>
                     <li><a href="https://www.github.com/teenagehelpline/progress"><i class="fa fa-fw fa-github"></i></a></li>
                 </ul>

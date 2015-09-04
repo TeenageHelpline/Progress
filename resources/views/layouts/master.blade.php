@@ -1,16 +1,10 @@
 @include('layouts.header')
 @include('layouts.sidebar')
+@include('layouts.includes')
 <!doctype html>
 <html>
 <head>
-    <title>@yield('title')</title>
-
-    <!-- CSS -->
-    <link href="{{ asset('/assets/css/app.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('/assets/css/theme.css') }}" rel="stylesheet" type="text/css"/>
-
-    <!-- JS -->
-    <script src="{{ asset('/assets/js/app.js') }}"></script>
+@yield('includes')
 </head>
 <body>
 @yield('header')
