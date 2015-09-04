@@ -1,0 +1,28 @@
+{
+  "name": "progress",
+  "version": "1.0.0",
+  "homepage": "https://github.com/TeenageHelpline/Progress",
+  "description": "Progress HR",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "progress",
+    "hr"
+  ],
+  "authors": [
+    "Teenage Helpline"
+  ],
+  "license": "TBA",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "bootstrap-sass-official#~3.3.5"
+  }
+}
