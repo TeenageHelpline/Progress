@@ -12,9 +12,14 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#"><i class="fa fa-fw fa-cogs"></i></a></li>
-                    <li><a href="#"><i class="fa fa-fw fa-question"></i></a></li>
+                    @if(Auth::check())
+                        <li><a href="#">Dashboard</a></li>
+                    @endif
+
+                    @if(Auth::check())
+                        <li><a href="#"><i class="fa fa-fw fa-cogs"></i></a></li>
+                    @endif
+                    <li><a href="#"><i class="fa fa-fw fa-question-circle"></i></a></li>
                     <li><a href="https://www.github.com/teenagehelpline/progress"><i class="fa fa-fw fa-github"></i></a></li>
                 </ul>
             </div>
