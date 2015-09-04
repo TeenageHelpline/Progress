@@ -17,10 +17,13 @@ var paths = {
 }
 
 elixir(function(mix) {
-    mix.sass('app.scss', 'public/css/', {includePaths: [paths.bootstrap + 'stylesheets/']})
+    mix.sass('app.scss', 'public/css/', {
+        includePaths: [
+            paths.bootstrap + 'stylesheets/']
+        })
         .copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/fonts')
         .scripts([
          paths.jquery + "dist/jquery.js",
          paths.bootstrap + "javascripts/bootstrap.js"
-        ], './', 'public/js/app.js');
+        ], 'public/js/app.js', './vendor/bower_components/');
 });
