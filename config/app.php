@@ -194,6 +194,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
+        'Site'		=> 'App\Helpers\Site',
+        'User'		=> 'App\Helpers\User',
+
     ],
 
 ];

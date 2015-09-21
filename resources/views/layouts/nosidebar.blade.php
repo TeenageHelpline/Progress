@@ -11,7 +11,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 main center-block" style="float: none;">
+        <div class="col-md-12 main center-block" style="float: none;">
             @yield('content')
         </div>
     </div>

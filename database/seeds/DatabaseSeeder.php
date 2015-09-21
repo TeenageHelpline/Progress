@@ -51,7 +51,6 @@ class DummyUserSeeder extends Seeder {
 	public function run()
 	{
 		$john = User::create([
-			'email' => 'john@example.com',
 			'password' => Hash::make('asdasd'),
 			'first_name' => 'John',
 			'last_name' => 'Smith',
@@ -77,7 +76,6 @@ class DummyUserSeeder extends Seeder {
 			'last_name' => 'Smith',
 			'dob' => '337564800',
 			'gender' => 'f',
-			'email' => 'jane@smith.local',
 			'address1' => '12 Main Street',
 			'city' => 'London',
 			'zip' => 'NW1 1AC',
