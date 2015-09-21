@@ -18,6 +18,9 @@
 
                     @if(Auth::check())
                         <li><a href="#"><i class="fa fa-fw fa-cogs"></i></a></li>
+		                <li><a href="<?php echo route('userLogout'); ?>" title="Log out"><i class="fa fa-sign-out"></i></a></li>
+		            @else
+		                <li><a href="<?php echo route('userLogin'); ?>" title="Log in"><i class="fa fa-sign-in"></i></a></li>
                     @endif
 
                     <li><a href="#"><i class="fa fa-fw fa-question-circle"></i></a></li>
