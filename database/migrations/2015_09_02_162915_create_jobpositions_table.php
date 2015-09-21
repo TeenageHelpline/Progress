@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RenamePositionsTable extends Migration
+class CreateJobpositionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,11 @@ class RenamePositionsTable extends Migration
      */
     public function up()
     {
-        // Rename positions table to job_positions to make its purpose clearer
-        Schema::rename("positions", "job_positions");
+	    Schema::create('jobpositions', function($table){
+	    	$table->increments('id');
+	    	$table->string('name');
+			$table->timestamps();
+    	});
     }
 
     /**
@@ -23,7 +26,6 @@ class RenamePositionsTable extends Migration
      */
     public function down()
     {
-        // Reverse this change
-        Schema::rename("job_positions", "positions");
+        Schema::drop('jobpositions');
     }
 }

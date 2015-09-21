@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Http\Models\User;
 use App\Http\Models\Role;
-use App\Http\Models\JobPosition;
+use App\Http\Models\Jobposition;
 use App\Http\Models\Person;
 
 class DatabaseSeeder extends Seeder
@@ -21,9 +21,8 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call('RoleTableSeeder');
+		$this->call('JobpositionsTableSeeder');
         $this->call('DummyUserSeeder');
-		$this->call('JobPositionsTableSeeder');
-		$this->call('PeopleTableSeeder');
 
         Model::reguard();
     }
@@ -39,18 +38,21 @@ class RoleTableSeeder extends Seeder {
 
 }
 
-class JobPositionsTableSeeder extends Seeder {
+class JobpositionsTableSeeder extends Seeder {
 
 	public function run() {
-		JobPosition::create(['name' => 'Employee']);
-		JobPosition::create(['name' => 'Boss']);
+		Jobposition::create(['name' => 'Employee']);
+		Jobposition::create(['name' => 'Boss']);
 	}
 }
 
-class PeopleTableSeeder extends Seeder {
-
-	public function run() {
-		$john = Person::create([
+class DummyUserSeeder extends Seeder {
+	
+	public function run()
+	{
+		$john = User::create([
+			'email' => 'john@example.com',
+			'password' => Hash::make('asdasd'),
 			'first_name' => 'John',
 			'last_name' => 'Smith',
 			'dob' => '336787200',
@@ -62,11 +64,15 @@ class PeopleTableSeeder extends Seeder {
 			'country' => 'United Kingdom',
 		]);
 
-		if($john) {
-			$john->giveJobPosition("Employee");
+		if($john)
+		{
+			$john->assignRole('login');
+			$john->giveJobPosition('Employee');
 		}
 
-		$jane = Person::create([
+		$jane = User::create([
+			'email' => 'administrator@progress.local',
+			'password' => Hash::make('password'),
 			'first_name' => 'Jane',
 			'last_name' => 'Smith',
 			'dob' => '337564800',
@@ -78,25 +84,11 @@ class PeopleTableSeeder extends Seeder {
 			'country' => 'United Kingdom',
 		]);
 
-		if($jane) {
-			$jane->giveJobPosition("Boss");
-		}
-	}
-}
-
-class DummyUserSeeder extends Seeder {
-	
-	public function run()
-	{
-		$user = User::create([
-			'name' => 'Progress Administrator',
-			'email' => 'administrator@progress.local',
-			'password' => Hash::make('password'),
-		]);
-
-		if($user)
+		if($jane)
 		{
-			$user->assignRole('user');
+			$jane->assignRole('login');
+			$jane->assignRole('admin');
+			$jane->giveJobPosition("Boss");
 		}
 
 		$this->command->info('Administration user created. Username: administrator@progress.local, password: password.');

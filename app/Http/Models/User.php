@@ -22,7 +22,20 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'email', 'password'];
+	protected $fillable = [
+		'email',
+		'password',
+		'first_name',
+		'last_name',
+		'email',
+        'address1',
+        'address2',
+        'zip',
+        'city',
+        'country',
+        'dob',
+        'gender'
+    ];
 
 	/**
 	 * The attributes excluded from the models JSON form.
@@ -50,5 +63,20 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		}
 		return $this->roles()->attach($role);
 	}
+
+    public function jobpositions()
+    {
+        return $this->belongsToMany('App\Http\Models\Jobposition', 'users_jobpositions');
+    }
+
+    public function giveJobposition($position)
+    {
+        if(gettype($position) == 'string')
+        {
+            $position = Jobposition::where('name', '=', $position)->first();
+        }
+
+        return $this->jobpositions()->attach($position);
+    }
 
 }

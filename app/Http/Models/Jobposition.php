@@ -5,16 +5,16 @@ namespace App\Http\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class JobPosition
+ * Class Jobposition
  *
  * A job position within the organisation
  *
  * @package App
  */
 
-class JobPosition extends Model
+class Jobposition extends Model
 {
-    protected $table ='job_positions';
+    protected $table ='jobpositions';
 
     protected $fillable = ['name'];
 }
