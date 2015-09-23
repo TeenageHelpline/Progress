@@ -3,7 +3,6 @@
 Homestead.yaml
 Homestead.json
 .env
-.env.example
 composer.lock
 npm-debug.log
 .idea/
