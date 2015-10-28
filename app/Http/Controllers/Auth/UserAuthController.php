@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use App\Traits\AuthenticatesAndRegistersAppUsers;
 use Log;
-use Illuminate\Foundation\Auth\Request;
+use Illuminate\Http\Request;
 
 class UserAuthController extends Controller
 {
@@ -90,7 +90,7 @@ class UserAuthController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function postLogin(\Illuminate\Http\Request $request)
+    public function postLogin(Request $request)
     {
         $this->validate($request, [
             $this->loginUsername() => 'required', 'password' => 'required',
