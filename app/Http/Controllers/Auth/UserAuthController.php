@@ -107,10 +107,7 @@ class UserAuthController extends Controller
 
         $credentials = $this->getCredentials($request);
 
-        $user = User::where('email', '=', $request->get('email'))->firstOrFail();
-        Log::info("User: ".$user->login);
-
-        if (Auth::attempt($credentials, $request->has('remember')) && $user->login) {
+        if (Auth::attempt($credentials, $request->has('remember'))) {
             Log::info("User logged in!");
             return $this->handleUserWasAuthenticated($request, $throttles);
         }
