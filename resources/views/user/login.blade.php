@@ -25,9 +25,6 @@
 		</div>
 		<div class="form-group text-right">
 			<button class="btn btn-primary">Log in</button>
-			<p>
-				or <a href="<?php echo route('userSignup'); ?>" title="Sign up">Sign up</a>
-			</p>
 		</div>
 	</form>
 
