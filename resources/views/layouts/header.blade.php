@@ -13,7 +13,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     @if(Auth::check())
-                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="/dashboard">Dashboard</a></li>
                     @endif
 
                     @if(Auth::check())
