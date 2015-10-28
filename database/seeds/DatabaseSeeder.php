@@ -61,6 +61,7 @@ class DummyUserSeeder extends Seeder {
 			'city' => 'London',
 			'zip' => 'NW1 1AB',
 			'country' => 'United Kingdom',
+			'login' => true,
 		]);
 
 		if($john)
