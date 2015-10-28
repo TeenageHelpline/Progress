@@ -111,6 +111,7 @@ class UserAuthController extends Controller
         Log::info("User: ".$user->login);
 
         if (Auth::attempt($credentials, $request->has('remember')) && $user->login) {
+            Log::info("User logged in!");
             return $this->handleUserWasAuthenticated($request, $throttles);
         }
 
