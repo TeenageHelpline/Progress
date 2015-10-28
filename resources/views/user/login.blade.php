@@ -1,7 +1,7 @@
 @extends('layouts.nosidebar')
 
 @section('title')
-	Log in
+	Login
 @endsection
 
 @section('content')
