@@ -109,6 +109,11 @@ exec { "gulpinstall":
   require => [Package['npm'], Package['git']],
 }
 
+# Install Composer
+exec { 'install composer':
+  command => '/usr/bin/curl -sS https://getcomposer.org/installer | php && sudo mv composer.phar /usr/local/bin/composer',
+  require => [Package['curl'], Package['php5-cli']],
+}
 
 # Install Bower
 exec { "bowercomponentsinstall":
