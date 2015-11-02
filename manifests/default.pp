@@ -1,35 +1,27 @@
+# Stages
+stage { 'first':
+  before => Stage['main'],
+}
+
+
+class aptupdate {
+
+  exec { "aptgetupdate":
+    path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ],
+    command => "apt-get update",
+  }
+
+}
+
+class { 'aptupdate':
+  stage => first,
+}
+
 # Install cURL
 package { "curl":
   ensure => installed,
+  require => Exec['aptgetupdate'],
 }
-
-# Run apt-get update in case packages can't be found
-exec { "aptgetupdate":
-  path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ],
-  command => "apt-get update",
-  before => [Class['apache'], Class['::mysql::server'], Package['nodejs-legacy'], Package['git']],
-}
-# Apache configuration
-class { 'apache':
-  mpm_module => "prefork",
-  default_vhost => false,
-}
-
-file {'/etc/php5/apache2/':
-  ensure => 'directory',
-  before => Class['php::cli']
-}
-
-# Apache VHost
-apache::vhost { 'progress.local':
-  port => 80,
-  docroot => '/var/www/progress/public',
-  override => 'all',
-  default_vhost => true,
-}
-
-# ModRewrite
-class { '::apache::mod::rewrite': }
 
 # PHP
 class { 'php::cli': inifile => '/etc/php5/apache2/php.ini', }
@@ -49,6 +41,29 @@ exec { "enablephp5":
   notify => Service["apache2"],
   require => [Class['php::mod_php5'], Class['apache']],
 }
+
+# Apache configuration
+class { 'apache':
+  mpm_module => "prefork",
+  default_vhost => false,
+  require => Exec['aptgetupdate'],
+}
+
+file {'/etc/php5/apache2/':
+  ensure => 'directory',
+  before => Class['php::cli']
+}
+
+# Apache VHost
+apache::vhost { 'progress.local':
+  port => 80,
+  docroot => '/var/www/progress/public',
+  override => 'all',
+  default_vhost => true,
+}
+
+# ModRewrite
+class { '::apache::mod::rewrite': }
 
 # Restart Apache
 exec { "restartapache":
@@ -82,17 +97,19 @@ file { "/etc/update-motd.d/99-progress":
 # Install Node
 package { "nodejs-legacy":
   ensure => 'installed',
+  require => Exec['aptgetupdate'],
 }
 
 # Install NPM
 package { "npm":
   ensure => 'installed',
-  require => Package['nodejs-legacy'],
+  require => [Package['nodejs-legacy'], Exec['aptgetupdate']],
 }
 
 # Install Git
 package { "git":
   ensure => 'installed',
+  require => Exec['aptgetupdate'],
 }
 
 # Install Bower
@@ -134,6 +151,7 @@ exec { "modulesinstall":
 # Install notify-send
 package { "libnotify-bin":
   ensure => 'installed',
+  require => Exec['aptgetupdate'],
 }
 
 # Run gulp to update public CSS / JS
