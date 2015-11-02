@@ -26,6 +26,9 @@ class UserAuthController extends Controller
 
     use AuthenticatesAndRegistersAppUsers, ThrottlesLogins;
 
+    protected $redirectPath = "/";
+    protected $loginPath = "/user/login";
+
     /**
      * Create a new authentication controller instance.
      *
@@ -107,8 +110,19 @@ class UserAuthController extends Controller
         }
 
         $credentials = $this->getCredentials($request);
+        $user = User::where('email', '=', $request->get('email'))->firstOrFail();
 
-        if (Auth::attempt($credentials, $request->has('remember'))) {
+        /**
+         * We need to check whether $user->login is true or false first. If $user->login is true, then we
+         * conditionally move onto the next statement (Auth::attempt(..)), if $user->login is false then
+         * we bail out of the if statement and redirect with error messages.
+         *
+         * If we do this check the other way round - if(Auth::attempt(...) && $user->login) - then the user's
+         * authentication attempt succeeds but because $user->login is false the handleUserWasAuthenticated method
+         * is never fired, and the user ends up in some semi-logged in state.
+         */
+
+        if ($user->login && Auth::attempt($credentials, $request->has('remember'))) {
             Log::info("User logged in!");
             return $this->handleUserWasAuthenticated($request, $throttles);
         }
