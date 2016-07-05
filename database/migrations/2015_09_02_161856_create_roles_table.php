@@ -12,10 +12,11 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-    	Schema::create('roles', function($table){
+    	Schema::create('roles', function($table) {
     		$table->increments('id');
     		$table->string('name');
     		$table->string('description');
+            $table->boolean('login');
     	});
     }
 

@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Jobposition
+ * Class JobPosition
  *
  * A job position within the organisation
  *
  * @package App
  */
 
-class Jobposition extends Model
+class JobPosition extends Model
 {
     protected $table ='jobpositions';
 
