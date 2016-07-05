@@ -35,12 +35,14 @@ Route::get('user/logout',array(
 	'uses' => 'Auth\UserAuthController@getLogout'
 ));
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => 'auth'], function() {
 
-	Route::get('/dashboard', [
+	Route::get('dashboard', [
 		'as' => 'dashboardIndex',
 		'uses' => 'DashboardController@index'
 	]);
+
+	Route::resource('person', 'People\UserController');
 
 });
 

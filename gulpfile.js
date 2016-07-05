@@ -33,6 +33,6 @@ elixir(function(mix) {
     ], 'public/assets/js/app.js', './vendor/bower_components/');
 
     mix.copy(paths.fontawesome + '/fonts', 'public/assets/fonts');
-    mix.styles('theme.css', 'public/assets/css/')
+    mix.styles(['theme.css', 'people.css'], 'public/assets/css/')
 
 });

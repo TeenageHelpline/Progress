@@ -107,3 +107,9 @@ body {
 a#progress-brand {
     color: #FFF;
 }
+
+/* Vertical align center table content */
+
+table > tbody > tr > td {
+    vertical-align: middle !important;
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\People;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -16,6 +17,8 @@ class UserController extends Controller
     public function index()
     {
         //
+        return view('people.index')
+            ->with('people', User::all());
     }
 
     /**
