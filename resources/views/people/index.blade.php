@@ -4,16 +4,18 @@
 @endsection
 
 @section('content')
-    <h1 class="page-header">People</h1>
-
+    <h1 class="page-header">{{ ucwords(trans('people.people')) }}</h1>
+    <br>
+    <p> {{ trans('people.list-blurb') }}</p>
+    <br>
     <table class="table table-striped" id="personListTable">
         <thead>
             <tr>
-                <td><h5>First Name</h5></td>
-                <td><h5>Surname</h5></td>
-                <td><h5>Gender</h5></td>
-                <td><h5>Email Address</h5></td>
-                <td><h5>Primary Position</h5></td>
+                <td><h5>{{ ucwords(trans('people.first-name')) }}</h5></td>
+                <td><h5>{{ ucwords(trans('people.last-name')) }}</h5></td>
+                <td><h5>{{ ucwords(trans('people.gender')) }}</h5></td>
+                <td><h5>{{ ucwords(trans('people.email-address')) }}</h5></td>
+                <td><h5>{{ ucwords(trans('people.primary-job-position')) }}</h5></td>
             </tr>
         </thead>
         <tbody>
