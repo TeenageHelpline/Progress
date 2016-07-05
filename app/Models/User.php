@@ -46,37 +46,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function roles()
 	{
-		return $this->belongsToMany('App\Http\Models\Role', 'users_roles');
+		return $this->belongsToMany('App\Models\Role', 'users_roles');
 	}
 
-	public function hasRole($role = false)
-	{
-		if(!$role) return false;
-		return (bool)$this->roles()->where('name','=',$role)->first();
-	}
-	
-	public function assignRole($role)
-	{
-		if(gettype($role) == 'string')
-		{
-			$role = Role::where('name', '=', $role)->first();
-		}
-		return $this->roles()->attach($role);
-	}
-
-    public function jobpositions()
+    public function jobPositions()
     {
-        return $this->belongsToMany('App\Http\Models\Jobposition', 'users_jobpositions');
-    }
-
-    public function giveJobposition($position)
-    {
-        if(gettype($position) == 'string')
-        {
-            $position = Jobposition::where('name', '=', $position)->first();
-        }
-
-        return $this->jobpositions()->attach($position);
+        return $this->belongsToMany('App\Models\JobPosition', 'users_job_positions');
     }
 
 }

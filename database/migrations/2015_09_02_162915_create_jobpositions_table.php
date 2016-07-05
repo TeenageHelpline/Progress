@@ -12,7 +12,7 @@ class CreateJobpositionsTable extends Migration
      */
     public function up()
     {
-	    Schema::create('jobpositions', function($table){
+	    Schema::create('job_positions', function($table){
 	    	$table->increments('id');
 	    	$table->string('name');
 			$table->timestamps();
@@ -26,6 +26,6 @@ class CreateJobpositionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('jobpositions');
+        Schema::drop('job_positions');
     }
 }

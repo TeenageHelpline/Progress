@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobPosition extends Model
 {
-    protected $table ='jobpositions';
+    protected $table ='job_positions';
 
     protected $fillable = ['name'];
 }

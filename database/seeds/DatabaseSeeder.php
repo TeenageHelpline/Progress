@@ -4,10 +4,9 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 
-use App\Http\Models\User;
-use App\Http\Models\Role;
-use App\Http\Models\Jobposition;
-use App\Http\Models\Person;
+use App\Models\User;
+use App\Models\Role;
+use App\Models\JobPosition;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,7 +20,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call('RoleTableSeeder');
-		$this->call('JobpositionsTableSeeder');
+		$this->call('JobPositionsTableSeeder');
         $this->call('DummyUserSeeder');
 
         Model::reguard();
@@ -38,11 +37,11 @@ class RoleTableSeeder extends Seeder {
 
 }
 
-class JobpositionsTableSeeder extends Seeder {
+class JobPositionsTableSeeder extends Seeder {
 
 	public function run() {
-		Jobposition::create(['name' => 'Employee']);
-		Jobposition::create(['name' => 'Boss']);
+		JobPosition::create(['name' => 'Employee']);
+		JobPosition::create(['name' => 'Boss']);
 	}
 }
 
@@ -61,13 +60,12 @@ class DummyUserSeeder extends Seeder {
 			'city' => 'London',
 			'zip' => 'NW1 1AB',
 			'country' => 'United Kingdom',
-			'login' => false,
 		]);
 
 		if($john)
 		{
-			$john->assignRole('login');
-			$john->giveJobPosition('Employee');
+			$john->roles()->attach(Role::where('name', '=','user')->first());
+			$john->jobPositions()->attach(JobPosition::where('name', '=', 'Employee')->first());
 		}
 
 		$jane = User::create([
@@ -81,14 +79,12 @@ class DummyUserSeeder extends Seeder {
 			'city' => 'London',
 			'zip' => 'NW1 1AC',
 			'country' => 'United Kingdom',
-			'login' => true,
 		]);
 
 		if($jane)
 		{
-			$jane->assignRole('login');
-			$jane->assignRole('admin');
-			$jane->giveJobPosition("Boss");
+			$jane->roles()->attach(Role::where('name', '=','admin')->first());
+			$jane->jobPositions()->attach(JobPosition::where('name', '=', 'Boss')->first());
 		}
 
 		$this->command->info('Administration user created. Username: administrator@progress.local, password: password.');
