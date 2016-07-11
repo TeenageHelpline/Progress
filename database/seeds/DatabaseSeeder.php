@@ -17,13 +17,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
-
+        // Model::unguard() is no longer required since 5.2
+        
 		$this->call(InitialRolesTableSeeder::class);
 		$this->call(InitialJobPositionsTableSeeder::class);
 		$this->call(InitialUsersTableSeeder::class);
-
-        Model::reguard();
     }
 }
 
