@@ -20,9 +20,13 @@ class CreateUsersTable extends Migration
             $table->string('address2');
             $table->string('zip');
             $table->string('city');
+            $table->string('state');
             $table->string('country');
-            $table->integer('dob');
+            $table->date('dob');
+            $table->string('telephone', 64);
+            $table->string('mobile_telephone', 64);
             $table->string('gender', 2);
+            $table->string('image_path');
             $table->rememberToken();
             $table->timestamps();
         });

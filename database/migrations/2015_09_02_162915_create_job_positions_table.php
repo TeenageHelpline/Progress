@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJobpositionsTable extends Migration
+class CreateJobPositionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateJobpositionsTable extends Migration
     {
 	    Schema::create('job_positions', function($table){
 	    	$table->increments('id');
-	    	$table->string('name');
+	    	$table->string('name')->unique();
 			$table->timestamps();
     	});
     }

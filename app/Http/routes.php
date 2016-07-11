@@ -42,6 +42,11 @@ Route::group(['middleware' => 'auth'], function() {
 		'uses' => 'DashboardController@index'
 	]);
 
+	Route::get('person/{id}/face', [
+		'as' => 'person.face',
+		'uses' => 'People\UserController@getFace'
+	]);
+
 	Route::resource('person', 'People\UserController');
 
 });
