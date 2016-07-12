@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\GenerateTestData;
 use App\Console\Commands\GenerateTestJobPositions;
 use App\Console\Commands\GenerateTestUsers;
 use Illuminate\Console\Scheduling\Schedule;
@@ -18,6 +19,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\Inspire::class,
         GenerateTestJobPositions::class,
         GenerateTestUsers::class,
+        GenerateTestData::class,
     ];
 
     /**

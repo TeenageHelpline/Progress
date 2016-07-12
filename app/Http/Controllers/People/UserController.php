@@ -91,6 +91,6 @@ class UserController extends Controller
 
     public function getFace($id) {
         $user = User::find($id);
-        return response()->download(storage_path('app/').'/people/'.$user->id.'/face.jpg');
+        return response()->file(storage_path('app/').'/people/'.$user->id.'/face.jpg');
     }
 }

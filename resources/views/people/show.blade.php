@@ -4,8 +4,17 @@
 @endsection
 
 @section('content')
-    <h1 style="margin-top: 0px;">{{ $person->first_name }} {{ $person->last_name }}</h1>
-    <h2 class="page-header job-position-heading">{{ $person->jobPositions()->first()->name }}</h2>
+    <div class="row">
+        <div class="col-md-1">
+            <img style="border-radius: 100%; padding: 5px; border: 1px solid #ddd;" width="150" height="150" src="{{ url('/person', [$person->id, 'face']) }}"/>
+        </div>
+        <div class="col-md-10" style="padding-top: 30px; padding-left:60px;">
+            <h1 style="margin-top: 0px;">{{ $person->first_name }} {{ $person->last_name }}</h1>
+            <h2 class="job-position-heading">{{ $person->jobPositions()->first()->name }}</h2>
+        </div>
+    </div>
+
+    <hr>
 
     <h3>Personal Information</h3>
     <br>

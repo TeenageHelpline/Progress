@@ -31,6 +31,13 @@ class InitialUsersTableSeeder extends Seeder
 
         if($user)
         {
+            // Generate and save image
+            $path = 'people/'.$user->id.'/face.jpg';
+            \Illuminate\Support\Facades\Storage::put($path, file_get_contents('http://lorempixel.com/400/400/people/'));
+
+            $user->image_path = $path;
+            $user->save();
+
             $user->roles()->attach(\App\Models\Role::where('name', '=','admin')->first());
             $user->jobPositions()->attach(\App\Models\JobPosition::where('name', '=', 'Boss')->first());
         }
