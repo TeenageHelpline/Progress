@@ -36,4 +36,7 @@
             @endforeach
         </tbody>
     </table>
+
+    {{ $people->links() }}
+
 @endsection

@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         //
         return view('people.index')
-            ->with('people', User::all());
+            ->with('people', User::simplePaginate(12));
     }
 
     /**
