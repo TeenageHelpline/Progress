@@ -4,7 +4,10 @@
 <!doctype html>
 <html>
 <head>
-@yield('includes')
+    <link rel="icon"
+          type="image/png"
+          href="/assets/images/favicon.png">
+    @yield('includes')
 </head>
 <body>
 @yield('header')
@@ -17,5 +20,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip({
+            container: 'body'
+        })
+    });
+</script>
+
 </body>
 </html>

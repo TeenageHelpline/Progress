@@ -20,6 +20,7 @@ class TestingUsersTableSeeder extends Seeder
                 // Male
                 $user = \App\Models\User::create([
                     'email' => $faker->safeEmail,
+                    'personal_email' => $faker->safeEmail,
                     'password' => \Illuminate\Support\Facades\Hash::make('password'),
                     'first_name' => $faker->firstNameMale,
                     'last_name' => $faker->lastName,
@@ -30,13 +31,14 @@ class TestingUsersTableSeeder extends Seeder
                     'state' => 'Any State',
                     'zip' => $faker->postcode,
                     'country' => 'United Kingdom',
-                    'mobile_telephone' => $faker->mobileNumber,
-                    'telephone' => $faker->phoneNumber
+                    'personal_telephone' => $faker->mobileNumber,
+                    'work_telephone' => $faker->phoneNumber
                 ]);
             } else {
                 // Female
                 $user = \App\Models\User::create([
                     'email' => $faker->safeEmail,
+                    'personal_email' => $faker->safeEmail,
                     'password' => \Illuminate\Support\Facades\Hash::make('password'),
                     'first_name' => $faker->firstNameFemale,
                     'last_name' => $faker->lastName,
@@ -47,8 +49,8 @@ class TestingUsersTableSeeder extends Seeder
                     'state' => 'Any State',
                     'zip' => $faker->postcode,
                     'country' => 'United Kingdom',
-                    'mobile_telephone' => $faker->mobileNumber,
-                    'telephone' => $faker->phoneNumber
+                    'personal_telephone' => $faker->mobileNumber,
+                    'work_telephone' => $faker->phoneNumber
                 ]);
             }
 

@@ -4,6 +4,9 @@
 <!doctype html>
 <html>
 <head>
+    <link rel="icon"
+          type="image/png"
+          href="/assets/images/favicon.png">
 @yield('includes')
 </head>
 <body>

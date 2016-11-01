@@ -4,27 +4,9 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-md-2">
-            <img style="border-radius: 100%; padding: 5px; border: 1px solid #ddd;" width="150" height="150" src="{{ url('/person', [$person->id, 'face']) }}"/>
-        </div>
-        <div class="col-md-10" style="padding-top: 40px; padding-left:60px;">
-            <h1 style="margin-top: 0px; margin-bottom: 0px;">{{ $person->first_name }} {{ $person->last_name }}</h1>
-            <h2 style="margin-top: 5px;" class="job-position-heading">{{ $person->jobPositions()->first()->name }}</h2>
-        </div>
-    </div>
+    @include('people.components.person-header')
 
-    <div class="btn-group btn-group-justified" role="group" style="margin-top: 15px; margin-bottom: 5px;">
-        <a role="button" href="#" class="btn btn-success">Add role</a>
-        <a role="button" href="#" class="btn btn-info">Supporting documents</a>
-        <a role="button" href="#" class="btn btn-primary">Modify personal details</a>
-        <a role="button" href="#" class="btn btn-warning">Emergency contact details</a>
-        <a role="button" href="#" class="btn btn-danger">Delete person</a>
-    </div>
-
-    <hr>
-
-    <h3>Personal Information</h3>
+    <h3>Personal information</h3>
     <hr>
 
     <!-- First name -->
@@ -57,7 +39,16 @@
         </div>
     </div>
 
-    <br>
+    <!-- DOB -->
+    <div class="row">
+        <div class="col-md-2">
+            <p><b>Date of Birth</b></p>
+        </div>
+        <div class="col-md-5">
+            <p>{{ \Carbon\Carbon::parse($person->dob)->toFormattedDateString() }}</p>
+        </div>
+    </div>
+
 
     <!-- Age -->
     <div class="row">
@@ -69,20 +60,9 @@
         </div>
     </div>
 
-    <!-- DOB -->
-    <div class="row">
-        <div class="col-md-2">
-            <p><b>Date of Birth</b></p>
-        </div>
-        <div class="col-md-5">
-            <p>{{ $person->dob }}</p>
-        </div>
-    </div>
-
-
     <hr>
 
-    <h3>Contact Information</h3>
+    <h3>Contact information</h3>
     <hr>
 
     <!-- Address Line 1 -->
@@ -150,30 +130,40 @@
     <!-- Email -->
     <div class="row">
         <div class="col-md-3">
-            <p><b>Email Address</b></p>
+            <p><b>Work Email Address</b></p>
         </div>
         <div class="col-md-5">
             <p>{{ $person->email }}</p>
         </div>
     </div>
 
+    <!-- Email -->
+    <div class="row">
+        <div class="col-md-3">
+            <p><b>Personal Email Address</b></p>
+        </div>
+        <div class="col-md-5">
+            <p>{{ $person->personal_email }}</p>
+        </div>
+    </div>
+
     <!-- Mobile Num -->
     <div class="row">
         <div class="col-md-3">
-            <p><b>Mobile Phone Number</b></p>
+            <p><b>Work Phone Number</b></p>
         </div>
         <div class="col-md-5">
-            <p>{{ $person->mobile_telephone }}</p>
+            <p>{{ $person->work_telephone }}</p>
         </div>
     </div>
 
     <!-- Telephone -->
     <div class="row">
         <div class="col-md-3">
-            <p><b>Telephone Number</b></p>
+            <p><b>Personal Phone Number</b></p>
         </div>
         <div class="col-md-5">
-            <p>{{ $person->telephone }}</p>
+            <p>{{ $person->personal_telephone }}</p>
         </div>
     </div>
 

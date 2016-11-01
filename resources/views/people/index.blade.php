@@ -21,8 +21,8 @@
         <tbody>
             @foreach($people as $person)
                 <tr>
-                    <td><a href="{{ url('person', [$person->id]) }}">{{ $person->first_name }}</a></td>
-                    <td><a href="{{ url('person', [$person->id]) }}">{{ $person->last_name }}</a></td>
+                    <td><a href="{{ url('people', [$person->id]) }}">{{ $person->first_name }}</a></td>
+                    <td><a href="{{ url('people', [$person->id]) }}">{{ $person->last_name }}</a></td>
                     <td>
                         @if($person->gender == 'm')
                             <i class="fa fa-2x fa-male"></i>

@@ -15,6 +15,7 @@ class InitialUsersTableSeeder extends Seeder
 
         $user = \App\Models\User::create([
             'email' => 'administrator@progress.local',
+            'personal_email' => $faker->safeEmail,
             'password' => \Illuminate\Support\Facades\Hash::make('password'),
             'first_name' => $faker->firstNameFemale,
             'last_name' => $faker->lastName,
@@ -25,15 +26,15 @@ class InitialUsersTableSeeder extends Seeder
             'state' => 'Any State',
             'zip' => $faker->postcode,
             'country' => 'United Kingdom',
-            'mobile_telephone' => $faker->mobileNumber,
-            'telephone' => $faker->phoneNumber
+            'personal_telephone' => $faker->mobileNumber,
+            'work_telephone' => $faker->phoneNumber
         ]);
 
         if($user)
         {
             // Generate and save image
             $path = 'people/'.$user->id.'/face.jpg';
-            \Illuminate\Support\Facades\Storage::put($path, file_get_contents('http://lorempixel.com/400/400/people/'));
+            \Illuminate\Support\Facades\Storage::put($path, file_get_contents('http://api.adorable.io/avatar/400/'.md5($user->id.$user->email).''));
 
             $user->image_path = $path;
             $user->save();
