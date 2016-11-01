@@ -4,7 +4,7 @@ namespace App\Http\Requests\People;
 
 use App\Http\Requests\Request;
 
-class StorePersonRequest extends Request
+class UpdatePersonRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -35,7 +35,7 @@ class StorePersonRequest extends Request
             'postcode' => 'required',
             'country' => 'required',
             'personal-email' => 'required',
-            'work-email' => array('required', 'unique:users,email'),
+            'work-email' => array('required', 'unique:users,email,'.$this->route('people')),
             'personal-telephone' => 'required',
         ];
     }

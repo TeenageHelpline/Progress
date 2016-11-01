@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth'], function() {
 	]);
 
 	Route::resource('people', 'People\UserController');
+    Route::resource('positions', 'JobPositionsController');
 
 });
 
