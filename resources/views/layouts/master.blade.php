@@ -7,7 +7,7 @@
     <link rel="icon"
           type="image/png"
           href="/assets/images/favicon.png">
-    @yield('includes')
+        @yield('includes')
 </head>
 <body>
 @yield('header')

@@ -1,5 +1,5 @@
 @section('includes')
-<title>@yield('title')</title>
+<title>@yield('title') | Progress HR</title>
 
 <!-- CSS -->
 <link href="{{ asset('/assets/css/app.css') }}" rel="stylesheet" type="text/css"/>
