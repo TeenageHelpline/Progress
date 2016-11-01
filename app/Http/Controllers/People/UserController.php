@@ -29,6 +29,7 @@ class UserController extends Controller
     public function create()
     {
         //
+        return view('people.create');
     }
 
     /**

@@ -9,3 +9,5 @@ npm-debug.log
 .vagrant/
 /public/assets
 Vagrantfile
+bootstrap/cache/*
+.vagrant/*

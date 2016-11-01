@@ -5,19 +5,27 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-1">
+        <div class="col-md-2">
             <img style="border-radius: 100%; padding: 5px; border: 1px solid #ddd;" width="150" height="150" src="{{ url('/person', [$person->id, 'face']) }}"/>
         </div>
-        <div class="col-md-10" style="padding-top: 30px; padding-left:60px;">
-            <h1 style="margin-top: 0px;">{{ $person->first_name }} {{ $person->last_name }}</h1>
-            <h2 class="job-position-heading">{{ $person->jobPositions()->first()->name }}</h2>
+        <div class="col-md-10" style="padding-top: 40px; padding-left:60px;">
+            <h1 style="margin-top: 0px; margin-bottom: 0px;">{{ $person->first_name }} {{ $person->last_name }}</h1>
+            <h2 style="margin-top: 5px;" class="job-position-heading">{{ $person->jobPositions()->first()->name }}</h2>
         </div>
+    </div>
+
+    <div class="btn-group btn-group-justified" role="group" style="margin-top: 15px; margin-bottom: 5px;">
+        <a role="button" href="#" class="btn btn-success">Add role</a>
+        <a role="button" href="#" class="btn btn-info">Supporting documents</a>
+        <a role="button" href="#" class="btn btn-primary">Modify personal details</a>
+        <a role="button" href="#" class="btn btn-warning">Emergency contact details</a>
+        <a role="button" href="#" class="btn btn-danger">Delete person</a>
     </div>
 
     <hr>
 
     <h3>Personal Information</h3>
-    <br>
+    <hr>
 
     <!-- First name -->
     <div class="row">
@@ -75,11 +83,11 @@
     <hr>
 
     <h3>Contact Information</h3>
-    <br>
+    <hr>
 
     <!-- Address Line 1 -->
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <p><b>Address Line One</b></p>
         </div>
         <div class="col-md-5">
@@ -89,7 +97,7 @@
 
     <!-- Address Line 2 -->
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <p><b>Address Line Two</b></p>
         </div>
         <div class="col-md-5">
@@ -99,7 +107,7 @@
 
     <!-- City -->
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <p><b>Town/City</b></p>
         </div>
         <div class="col-md-5">
@@ -109,7 +117,7 @@
 
     <!-- County/State-->
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <p><b>County/State</b></p>
         </div>
         <div class="col-md-5">
@@ -119,7 +127,7 @@
 
     <!-- Postal Code -->
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <p><b>Postal Code</b></p>
         </div>
         <div class="col-md-5">
@@ -129,7 +137,7 @@
 
     <!-- Country -->
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <p><b>Country</b></p>
         </div>
         <div class="col-md-5">
@@ -141,7 +149,7 @@
 
     <!-- Email -->
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <p><b>Email Address</b></p>
         </div>
         <div class="col-md-5">
@@ -151,7 +159,7 @@
 
     <!-- Mobile Num -->
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <p><b>Mobile Phone Number</b></p>
         </div>
         <div class="col-md-5">
@@ -161,7 +169,7 @@
 
     <!-- Telephone -->
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <p><b>Telephone Number</b></p>
         </div>
         <div class="col-md-5">
