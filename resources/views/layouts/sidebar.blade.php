@@ -12,7 +12,7 @@
             <li><a href=""><i class="fa fa-fw fa-clock-o"></i> {{ trans('sidebar.time-tracker') }}</a></li>
         </ul>
         <ul class="nav nav-sidebar">
-            <li @if(Request::is('positions*')) class="active" @endif ><a href=""><i class="fa fa-fw fa-briefcase"></i> {{ trans('sidebar.list-job-positions') }}</a></li>
+            <li @if(Request::is('positions*')) class="active" @endif ><a href="/positions"><i class="fa fa-fw fa-briefcase"></i> {{ trans('sidebar.list-job-positions') }}</a></li>
             <li><a href=""><i class="fa fa-fw fa-plus"></i> {{ trans('sidebar.new-job-position') }}</a></li>
         </ul>
         <ul class="nav nav-sidebar">

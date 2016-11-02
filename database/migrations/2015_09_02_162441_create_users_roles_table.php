@@ -16,6 +16,8 @@ class CreateUsersRolesTable extends Migration
     		$table->increments('id');
     		$table->integer('user_id');
     		$table->integer('role_id');
+            $table->boolean('primary');
+
     		$table->index('user_id');
     		$table->index('role_id');
     	});

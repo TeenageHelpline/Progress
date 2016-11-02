@@ -5,7 +5,6 @@
 
 @section('content')
     <h1 class="page-header">Job Positions</h1>
-    <br>
     <p>View job positions below</p>
     <br>
     <table class="table table-striped" id="positionsListTable">
@@ -17,7 +16,7 @@
         <tbody>
             @foreach($positions as $position)
                 <tr>
-                    <td><a href="{{ url('positions', [$position->id]) }}">{{ $position->name }}</a></td>
+                    <td><a href="{{ url('positions', [$position->id, 'edit']) }}">{{ $position->name }}</a></td>
 
                 </tr>
             @endforeach

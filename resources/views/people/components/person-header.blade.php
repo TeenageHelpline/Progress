@@ -4,7 +4,7 @@
     </div>
     <div class="col-md-10" style="padding-top: 40px; padding-left:20px;">
         <h1 style="margin-top: 0px; margin-bottom: 0px;">{{ $person->first_name }} {{ $person->last_name }}</h1>
-        <h2 style="margin-top: 5px;" class="job-position-heading">{{ $person->jobPositions()->first()->name }}</h2>
+        <h2 style="margin-top: 5px;" class="job-position-heading">{{ $person->jobPositions()->wherePivot('primary', true)->first()->name }} <span style="font-size: x-small; font-style: italic;" >/ {{ $person->roles()->wherePivot('primary', true)->first()->name }}</span></h2>
     </div>
 </div>
 

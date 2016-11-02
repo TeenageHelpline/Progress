@@ -31,7 +31,7 @@
                         @endif
                     </td>
                     <td>{{ $person->email }}</td>
-                    <td>{{ $person->jobPositions()->first()->name }}</td>
+                    <td>{{ $person->jobPositions()->wherePivot('primary', true)->first()->name }}</td>
                 </tr>
             @endforeach
         </tbody>

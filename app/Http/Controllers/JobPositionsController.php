@@ -63,6 +63,8 @@ class JobPositionsController extends Controller
     public function edit($id)
     {
         //
+        return view('positions.edit')
+            ->with('position', JobPosition::find($id));
     }
 
     /**
@@ -72,9 +74,14 @@ class JobPositionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\Positions\UpdatePositionRequest $request, $id)
     {
         //
+        $position = JobPosition::find($id);
+        $position->name = $request->input('name');
+        $position->save();
+
+        return redirect()->intended('/positions');
     }
 
     /**

@@ -39,8 +39,8 @@ class InitialUsersTableSeeder extends Seeder
             $user->image_path = $path;
             $user->save();
 
-            $user->roles()->attach(\App\Models\Role::where('name', '=','admin')->first());
-            $user->jobPositions()->attach(\App\Models\JobPosition::where('name', '=', 'Boss')->first());
+            $user->roles()->attach(\App\Models\Role::where('name', '=','admin')->first(), ['primary' => true]);
+            $user->jobPositions()->attach(\App\Models\JobPosition::where('name', '=', 'Boss')->first(), ['primary' => true]);
         }
 
         $this->command->info('Administration user created. Username: administrator@progress.local, password: password.');

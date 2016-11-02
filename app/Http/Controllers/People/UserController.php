@@ -70,7 +70,11 @@ class UserController extends Controller
 
         $person->save();
 
-        $person->jobPositions()->attach(1);
+        // Default job position
+        $person->jobPositions()->attach(1, ['primary' => true]);
+
+        // Default role
+        $person->roles()->attach(1, ['primary' => true]);
 
         return redirect()->intended('/people/');
     }

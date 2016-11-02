@@ -11,7 +11,7 @@ class InitialRolesTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Role::create(['name' => 'user', 'description' => 'Regular user']);
-        \App\Models\Role::create(['name' => 'admin', 'description' => 'Administrator']);
+        \App\Models\Role::create(['name' => 'User', 'description' => 'Regular user']);
+        \App\Models\Role::create(['name' => 'Admin', 'description' => 'Administrator']);
     }
 }

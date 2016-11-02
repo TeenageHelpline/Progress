@@ -18,6 +18,7 @@ class CreateUsersJobPositionsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('job_position_id');
+            $table->boolean('primary');
         });
     }
 
