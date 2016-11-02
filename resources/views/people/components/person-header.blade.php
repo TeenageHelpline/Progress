@@ -10,11 +10,12 @@
 
 <div class="btn-group btn-group-justified" role="group" style="margin-top: 15px; margin-bottom: 5px;">
     <a data-toggle="tooltip" data-placement="bottom" title="View details" role="button" href="/people/{{ $person->id }}" class="btn btn-info"><i class="fa fa-fw fa-address-card"></i></a>
-    <a data-toggle="tooltip" data-placement="bottom" title="Add job role" role="button" href="#" class="btn btn-success"><i class="fa fa-fw fa-plus"></i></a>
+    <a data-toggle="tooltip" data-placement="bottom" title="Add job position" role="button" href="#" class="btn btn-success"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-briefcase"></i></a>
     <a data-toggle="tooltip" data-placement="bottom" title="Supporting documents" role="button" href="#" class="btn btn-info"><i class="fa fa-fw fa-id-card-o"></i></a>
     <a data-toggle="tooltip" data-placement="bottom" title="Modify details" role="button" href="/people/{{ $person->id }}/edit" class="btn btn-primary"><i class="fa fa-fw fa-pencil"></i></a>
     <a data-toggle="tooltip" data-placement="bottom" title="Background checks" role="button" href="#" class="btn btn-info"><i class="fa fa-fw fa-search"></i></a>
     <a data-toggle="tooltip" data-placement="bottom" title="Emergency contact details" role="button" href="#" class="btn btn-warning"><i class="fa fa-fw fa-exclamation-triangle"></i></a>
+    <a data-toggle="tooltip" data-placement="bottom" title="Add login role" role="button" href="#" class="btn btn-success"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-user-circle-o"></i></a>
     <a data-toggle="tooltip" data-placement="bottom" title="Delete person" role="button" href="#" class="btn btn-danger"><i class="fa fa-fw fa-minus-circle"></i></a>
 </div>
 

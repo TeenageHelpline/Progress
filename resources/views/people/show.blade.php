@@ -167,6 +167,45 @@
         </div>
     </div>
 
+    <hr>
+
+    <h3>Job positions</h3>
+    <hr>
+
+    <table class="table table-striped table-responsive">
+        <thead>
+            <tr>
+                <td><h5>Position name</h5></td>
+                <td><h5>Primary?</h5></td>
+            </tr>
+        </thead>
+        @foreach($person->jobPositions as $position)
+            <tr>
+                <td>{{ $position->name }}</td>
+                <td><i class="fa @if($position->pivot->primary) fa-check-circle-o @else fa-times @endif"></i></td>
+            </tr>
+        @endforeach
+    </table>
+
+    <hr>
+
+    <h3>Login roles</h3>
+    <hr>
+
+    <table class="table table-striped table-responsive">
+        <thead>
+        <tr>
+            <td><h5>Role name</h5></td>
+            <td><h5>Primary?</h5></td>
+        </tr>
+        </thead>
+        @foreach($person->roles as $role)
+            <tr>
+                <td>{{ $role->name }}</td>
+                <td><i class="fa @if($role->pivot->primary) fa-check-circle-o @else fa-times @endif"></i></td>
+            </tr>
+        @endforeach
+    </table>
 
 
 @endsection

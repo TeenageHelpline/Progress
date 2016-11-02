@@ -50,7 +50,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function roles()
 	{
-		return $this->belongsToMany('App\Models\Role', 'users_roles');
+		return $this->belongsToMany('App\Models\Role', 'users_roles')->withPivot(['primary']);
 	}
 
     public function jobPositions()
